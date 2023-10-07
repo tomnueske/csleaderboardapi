@@ -2,7 +2,3 @@ Flask==3.0.0
 betterproto
 protobuf
 requests
-json
-typing
-dataclasses
-zoneInfo
