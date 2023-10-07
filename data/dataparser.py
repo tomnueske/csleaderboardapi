@@ -1,6 +1,5 @@
 """parse leaderboard data"""
 from typing import NamedTuple
-from zoneinfo import ZoneInfo
 
 import requests
 from .leaderboarddata import ScoreLeaderboardData
@@ -17,7 +16,6 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko
 
 MINUTE = 60
 HOUR = 60 * MINUTE
-VALVE_TIMEZONE = ZoneInfo('America/Los_Angeles')
 
 SLD = ScoreLeaderboardData()
 MAPS = {1: 'ancient',
@@ -108,4 +106,20 @@ class LeaderboardStats(NamedTuple):
         regional_leaderboard_data = regional_leaderboard_data['result']['entries']
         #regional_leaderboard_data = regional_leaderboard_data[:10]
 
-        return [LeaderboardStats.from_json(person)._asdict for person in regional_leaderboard_data]
+        return [LeaderboardStats.from_json(person)._asdict() for person in regional_leaderboard_data]
+
+    @staticmethod
+    def request_player(name: str):
+        """get player data"""
+        world_leaderboard_data = requests.get(CS2_LEADERBOARD_API, headers=HEADERS, timeout=15).json()
+        world_leaderboard_data = world_leaderboard_data['result']['entries']
+
+        for person in world_leaderboard_data :
+        
+            if name in person.values() :
+                player_data = person
+                return [LeaderboardStats.from_json(player_data)._asdict()]
+        
+        return ["Player not found"]
+
+     

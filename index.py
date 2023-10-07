@@ -17,17 +17,13 @@ def fetch_leaderboard():
 
     world_leaderboard_stats = json.dumps(LeaderboardStats.request_world())
     return(world_leaderboard_stats)
-    #print(world_leaderboard_stats)
 
 @app.route('/api/player', methods=['GET'])
 def get_player():
     """"get single player"""
     name=request.args.get("name")
-    world_leaderboard_stats = LeaderboardStats.request_world()
-    for person in world_leaderboard_stats :
-        if name in person.values():
-            #print(person)
-            return(person)
+    player_stats = LeaderboardStats.request_player(name)
+    return(player_stats)
 
 
 
