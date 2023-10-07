@@ -5,7 +5,7 @@ from data import LeaderboardStats
 
 app = Flask(__name__)
 
-@app.route('/api/leaderboard', methods=['GET'])
+@app.route('/', methods=['GET'])
 def fetch_leaderboard():
     """get leaderboard"""
 
@@ -13,7 +13,7 @@ def fetch_leaderboard():
     return(world_leaderboard_stats)
     #print(world_leaderboard_stats)
 
-@app.route('/api/player', methods=['GET'])
+@app.route('/player', methods=['GET'])
 def get_player():
     """"get single player"""
     name=request.args.get("name")
