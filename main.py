@@ -23,10 +23,5 @@ def get_player():
             #print(person)
             return(person)
 
-
-
-#fetch_leaderboard()
-#get_player("Sonnebumabüte")
-
 if __name__ == '__main__':
     app.run(debug=True)
