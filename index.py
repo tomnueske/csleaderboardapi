@@ -1,9 +1,15 @@
-"""main"""
+"""index"""
+
 import json
-from flask import Flask, request
+from flask import Flask,request
 from data import LeaderboardStats
 
 app = Flask(__name__)
+
+@app.route('/')
+def main():
+    """"main"""
+    return 'This is my pointless new page'
 
 @app.route('/api/leaderboard', methods=['GET'])
 def fetch_leaderboard():
@@ -22,6 +28,8 @@ def get_player():
         if name in person.values():
             #print(person)
             return(person)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
