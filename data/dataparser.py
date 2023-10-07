@@ -115,11 +115,9 @@ class LeaderboardStats(NamedTuple):
         world_leaderboard_data = world_leaderboard_data['result']['entries']
 
         for person in world_leaderboard_data :
-        
+
             if name in person.values() :
                 player_data = person
                 return [LeaderboardStats.from_json(player_data)._asdict()]
-        
-        return ["Player not found"]
 
-     
+        return ["Player not found"]

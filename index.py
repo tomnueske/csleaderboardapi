@@ -16,14 +16,14 @@ def fetch_leaderboard():
     """get leaderboard"""
 
     world_leaderboard_stats = json.dumps(LeaderboardStats.request_world())
-    return(world_leaderboard_stats)
+    return world_leaderboard_stats
 
 @app.route('/api/player', methods=['GET'])
 def get_player():
     """"get single player"""
     name=request.args.get("name")
     player_stats = LeaderboardStats.request_player(name)
-    return(player_stats)
+    return player_stats
 
 
 
